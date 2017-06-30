@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int-mqtt="http://www.springframework.org/schema/integration/mqtt"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/integration/mqtt
+       http://www.springframework.org/schema/integration/mqtt/spring-integration-mqtt.xsd">
+
+    <!-- mqtt客户端 -->
+    <bean id="clientFactory"
+          class="org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory">
+        <property name="userName" value="root" />
+        <property name="password" value="sino123" />
+    </bean>
+
+    <!-- 消息适配器  -->
+    <int-mqtt:message-driven-channel-adapter
+            id="mqttInbound" client-id="CID_20170630_2" url="tcp://192.168.191.32:1883"
+            topics="robot_server"
+            qos="1"
+            client-factory="clientFactory"
+            auto-startup="true"
+            send-timeout="12"
+            channel="startCase" />
+
+    <int:channel id="startCase" />
+
+    <!-- 消息处理类 -->
+    <int:service-activator id="startCaseService"
+                           input-channel="startCase"
+                           ref="mqttCaseService"
+                           method="startCase" />
+
+    <bean id="mqttCaseService" class="com.jeiker.demo.server.MqttService" />
+</beans>

@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>spring-mvc-mqtt</name>
+
+	<groupId>spring-mvc-mqtt</groupId>
+	<artifactId>spring-mvc-mqtt</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>springmvc-mqtt-server</module>
+		<module>springmvc-mqtt-client</module>
+	</modules>
+
+</project>
