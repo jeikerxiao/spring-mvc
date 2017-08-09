@@ -11,6 +11,7 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd"
        default-autowire="byName">
 
+    <!-- 配置文件 -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -22,6 +23,7 @@
     <!-- aspectj aop启用CGliB代理 -->
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
     <context:annotation-config/>
+
     <!-- 扫描service -->
     <context:component-scan base-package="com.jeiker.demo.service"/>
 
