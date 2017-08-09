@@ -1,13 +1,14 @@
 package com.jeiker.demo.commons.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 工具类
  */
 public class RuntimeUtils {
-    private static final Logger logger = LogManager.getLogger(RuntimeUtils.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(RuntimeUtils.class);
     
     /**
      * 运行shell

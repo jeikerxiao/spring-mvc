@@ -38,8 +38,8 @@
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描Mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath*:mybatis/*.xml"></property>
-        <property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath*:mybatis/*.xml"/>
+        <property name="configLocation" value="classpath:config/mybatis-config.xml"/>
         <property name="typeAliasesPackage" value="com.jeiker.demo.model"/>
         <property name="plugins">
             <array>
@@ -59,7 +59,7 @@
 
     <!-- 事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
     <!-- 事务注解 -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>

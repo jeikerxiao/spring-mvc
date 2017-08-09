@@ -9,9 +9,10 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.apache.shiro.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -39,7 +40,7 @@ import com.jeiker.demo.commons.utils.URLUtils;
  */
 public abstract class BaseController {
     // 控制器本来就是单例，这样似乎更加合理
-    protected Logger logger = LogManager.getLogger(getClass());
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @InitBinder
     public void initBinder(ServletRequestDataBinder binder) {

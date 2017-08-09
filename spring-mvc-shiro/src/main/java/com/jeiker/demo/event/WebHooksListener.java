@@ -22,6 +22,7 @@ public class WebHooksListener implements ApplicationListener<WebHooksEvent> {
 	private String hookPwd;
 	@Value("${git.hook.script_path}")
 	private String scriptPath;
+
 	/**
 	 * 新线程需要同时 @EnableAsync + @Async
 	 */
