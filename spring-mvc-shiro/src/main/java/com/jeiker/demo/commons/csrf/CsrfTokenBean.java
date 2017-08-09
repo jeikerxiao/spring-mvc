@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import java.io.Serializable;
 
 public class CsrfTokenBean implements Serializable {
+
 	private static final long serialVersionUID = -6865031901744243607L;
 
 	private final String token;

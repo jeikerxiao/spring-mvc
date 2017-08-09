@@ -22,6 +22,7 @@
 
     <!-- aspectj aop启用CGliB代理 -->
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
+
     <context:annotation-config/>
 
     <!-- 扫描service -->
@@ -29,8 +30,7 @@
 
     <import resource="classpath:spring/spring-mybatis.xml"/>
 
-    <!-- redis 或 ehcache 二选一 -->
-    <!--<import resource="classpath:spring/spring-ehcache.xml"/>-->
+    <!-- redis -->
     <import resource="classpath:spring/spring-redis.xml"/>
 
     <!-- Spring 异步event需要开启task -->

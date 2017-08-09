@@ -16,6 +16,7 @@
     <mvc:annotation-driven/>
     <!-- aspectj aop启用CGliB代理 -->
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
+
     <context:component-scan base-package="com.jeiker.demo.controller;com.jeiker.demo.commons.scan"/>
     
     <!-- 配置结果页面 前缀和后缀 -->

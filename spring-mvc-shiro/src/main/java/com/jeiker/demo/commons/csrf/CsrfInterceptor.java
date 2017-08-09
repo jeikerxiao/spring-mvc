@@ -76,7 +76,7 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		// 非控制器请求直接跳出
-		if (!(handler instanceof HandlerMethod)) {
+		if (handler == null) {
 			return;
 		}
 		CsrfToken csrfToken = handlerMethod.getMethodAnnotation(CsrfToken.class);

@@ -35,9 +35,11 @@ public class SysLogAspect {
     @Autowired
     private ISysLogService sysLogService;
 
+    // 切点
     @Pointcut("within(@org.springframework.stereotype.Controller *)")
     public void cutController() {}
 
+    // 环绕通知
     @Around("cutController()")
     public Object recordSysLog(ProceedingJoinPoint point) throws Throwable {
         String strMethodName = point.getSignature().getName();
