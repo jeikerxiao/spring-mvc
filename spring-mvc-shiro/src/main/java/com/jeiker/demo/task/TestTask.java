@@ -1,5 +1,6 @@
 package com.jeiker.demo.task;
 
+import com.jeiker.demo.model.User;
 import com.jeiker.demo.service.impl.TestService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,31 +21,23 @@ import java.util.concurrent.Callable;
 public class TestTask {
 	protected Logger logger = LogManager.getLogger(getClass());
 	
-	@Autowired private CacheManager cacheManager;
-	@Autowired private TestService testService;
-//	@Autowired private RedisTemplate<String, Object> redisTemplate;
-	
-	@Scheduled(cron = "0 5/20 * * * ?")
-	public void cronTest() {
-		// 测试手动存储cache
-		Cache cache = cacheManager.getCache("hour");
-		Integer xx = cache.get("x", new Callable<Integer>() {
+	@Autowired
+	private CacheManager cacheManager;
+	@Autowired
+	private TestService testService;
 
-			@Override
-			public Integer call() throws Exception {
-				return 111111;
-			}
-			
-		});
+	@Scheduled(cron = "0/5 * * * * ?")
+	public void cronTest() {
+		logger.debug("===> 执行定时任务.");
+		// 测试手动存储cache
+//		Cache cache = cacheManager.getCache("hour");
+
 		// 测试redis
 //		redisTemplate.boundListOps("xxxx").leftPush("xxxx");
 		
 		// 测试注解
-		testService.selectById(1L);
-		testService.selectById(1L);
-		testService.selectById(1L);
-		
-		logger.debug(xx);
-		logger.debug(new Date());
+		User user = testService.selectById(1L);
+
+		logger.debug("===> user: {}",user);
 	}
 }

@@ -39,7 +39,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.jeiker.demo" level="info" />
+        <Logger name="com.jeiker.demo" level="debug" />
         <Root level="WARN" additivity="false">
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />

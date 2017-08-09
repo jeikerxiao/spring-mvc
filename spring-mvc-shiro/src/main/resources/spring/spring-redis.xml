@@ -25,6 +25,7 @@
         <property name="hostName" value="${redis.master.ip}"/>
         <property name="port" value="${redis.master.port}"/>
         <property name="password" value="${redis.master.password}"/>
+        <property name="database" value="${redis.master.db}"/>
         <property name="poolConfig" ref="jedisPoolConfig"/>
     </bean>
 

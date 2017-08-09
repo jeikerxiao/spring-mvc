@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 @Service
 public class TestService {
+
     @Autowired
     private UserMapper userMapper;
 	

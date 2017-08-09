@@ -91,7 +91,7 @@ public class SysLogAspect {
     private boolean isWriteLog(String method) {
         String[] pattern = {"login", "logout", "add", "edit", "delete", "grant"};
         for (String s : pattern) {
-            if (method.indexOf(s) > -1) {
+            if (method.contains(s)) {
                 return true;
             }
         }
