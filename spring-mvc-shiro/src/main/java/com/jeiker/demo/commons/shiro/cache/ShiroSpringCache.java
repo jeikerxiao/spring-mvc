@@ -21,9 +21,9 @@
  */
 package com.jeiker.demo.commons.shiro.cache;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.shiro.cache.CacheException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;
 
@@ -37,7 +37,8 @@ import java.util.Set;
  */
 @SuppressWarnings("unchecked")
 public class ShiroSpringCache<K, V> implements org.apache.shiro.cache.Cache<K, V> {
-	private static final Logger logger = LogManager.getLogger(ShiroSpringCache.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(ShiroSpringCache.class);
 	
 	private final Cache cache;
 	

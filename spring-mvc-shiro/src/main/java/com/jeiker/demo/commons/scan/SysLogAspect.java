@@ -3,8 +3,6 @@ package com.jeiker.demo.commons.scan;
 import com.jeiker.demo.commons.utils.StringUtils;
 import com.jeiker.demo.model.SysLog;
 import com.jeiker.demo.service.ISysLogService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
@@ -12,6 +10,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -30,7 +30,7 @@ import java.util.Enumeration;
 @Order
 public class SysLogAspect {
 
-    private static final Logger LOGGER = LogManager.getLogger(SysLogAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(SysLogAspect.class);
 
     @Autowired
     private ISysLogService sysLogService;
@@ -62,7 +62,7 @@ public class SysLogAspect {
         }
 
         String strMessage = String.format("[类名]:%s,[方法]:%s,[参数]:%s", strClassName, strMethodName, bfParams.toString());
-        LOGGER.info(strMessage);
+        logger.info(strMessage);
         if (isWriteLog(strMethodName)) {
             try {
                 Subject currentUser = SecurityUtils.getSubject();
@@ -77,11 +77,11 @@ public class SysLogAspect {
                     if (request != null) {
                         sysLog.setClientIp(request.getRemoteAddr());
                     }
-                    LOGGER.info(sysLog.toString());
+                    logger.info(sysLog.toString());
                     sysLogService.insert(sysLog);
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage(), e);
+                logger.error(e.getMessage(), e);
             }
         }
 

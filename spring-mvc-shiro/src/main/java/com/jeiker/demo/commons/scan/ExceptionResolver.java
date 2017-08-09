@@ -3,8 +3,8 @@ package com.jeiker.demo.commons.scan;
 import com.jeiker.demo.commons.result.Result;
 import com.jeiker.demo.commons.utils.BeanUtils;
 import com.jeiker.demo.commons.utils.WebUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("unchecked")
 public class ExceptionResolver implements HandlerExceptionResolver {
 
-	private static final Logger LOGGER = LogManager.getLogger(ExceptionResolver.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExceptionResolver.class);
 
 	@Autowired
 	private JacksonObjectMapper jacksonObjectMapper;
@@ -31,7 +31,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 	public ModelAndView resolveException(HttpServletRequest request,
 		 HttpServletResponse response, Object handler, Exception e) {
 		// log记录异常
-		LOGGER.error(e.getMessage(), e);
+		logger.error(e.getMessage(), e);
 		// 非控制器请求造成的异常
 		if (!(handler instanceof HandlerMethod)) {
 			return new ModelAndView("error/500");

@@ -4,8 +4,6 @@ import com.jeiker.demo.model.User;
 import com.jeiker.demo.model.vo.UserVo;
 import com.jeiker.demo.service.IRoleService;
 import com.jeiker.demo.service.IUserService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -14,6 +12,8 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -24,7 +24,8 @@ import java.util.Set;
  * @description：shiro权限认证
  */
 public class ShiroDbRealm extends AuthorizingRealm {
-    private static final Logger LOGGER = LogManager.getLogger(ShiroDbRealm.class);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShiroDbRealm.class);
 
     @Autowired
     private IUserService userService;

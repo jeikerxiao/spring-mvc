@@ -1,8 +1,8 @@
 package com.jeiker.demo.commons.csrf;
 
 import com.jeiker.demo.commons.scan.ExceptionResolver;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,11 +14,10 @@ import java.io.IOException;
 
 /**
  * Csrf拦截器，用来生成或去除CsrfToken
- * 
- * @author L.cm
  */
 public class CsrfInterceptor extends HandlerInterceptorAdapter {
-	private static final Logger logger = LogManager.getLogger(ExceptionResolver.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(ExceptionResolver.class);
 	
 	@Autowired 
 	private CsrfTokenRepository csrfTokenRepository;
@@ -27,7 +26,7 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		// 非控制器请求直接跳出
-		if (!(handler instanceof HandlerMethod)) {
+		if (handler == null) {
 			return true;
 		}
 		CsrfToken csrfToken = handlerMethod.getMethodAnnotation(CsrfToken.class);
