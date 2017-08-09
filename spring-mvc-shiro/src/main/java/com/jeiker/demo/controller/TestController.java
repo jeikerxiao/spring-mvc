@@ -12,8 +12,6 @@ import java.io.IOException;
 
 /**
  * @description：测试Controller
- * @author：zhixuan.wang
- * @date：2015/10/1 14:51
  */
 @Controller
 @RequestMapping("/test")

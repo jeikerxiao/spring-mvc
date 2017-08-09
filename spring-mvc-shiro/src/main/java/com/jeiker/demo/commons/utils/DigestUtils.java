@@ -4,7 +4,6 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 
 /**
  * 加密相关工具类直接使用Spring util封装，减少jar依赖
- * @author L.cm
  */
 public class DigestUtils extends org.springframework.util.DigestUtils {
 

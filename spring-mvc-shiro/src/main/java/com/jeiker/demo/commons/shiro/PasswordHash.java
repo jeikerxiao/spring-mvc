@@ -6,7 +6,6 @@ import org.springframework.util.Assert;
 
 /**
  * shiro密码加密配置
- * @author L.cm
  *
  */
 public class PasswordHash implements InitializingBean {

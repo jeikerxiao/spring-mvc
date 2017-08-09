@@ -19,8 +19,6 @@ import java.util.List;
 
 /**
  * @description：权限管理
- * @author：zhixuan.wang
- * @date：2015/10/1 14:51
  */
 @Controller
 @RequestMapping("/role")

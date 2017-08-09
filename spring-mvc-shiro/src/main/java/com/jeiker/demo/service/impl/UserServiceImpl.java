@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * User 表数据服务层接口实现类
- *
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {

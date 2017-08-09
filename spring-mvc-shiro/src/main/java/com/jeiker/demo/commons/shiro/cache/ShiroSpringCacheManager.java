@@ -31,7 +31,6 @@ import org.apache.shiro.util.Destroyable;
 /**
  * 使用spring-cache作为shiro缓存
  * 缓存管理器
- * @author L.cm
  *
  */
 public class ShiroSpringCacheManager implements CacheManager, Destroyable {

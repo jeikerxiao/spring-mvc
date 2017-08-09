@@ -9,9 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import java.io.Serializable;
 
 /**
- *
  * RoleResource 表数据库控制层接口
- *
  */
 public interface RoleResourceMapper extends BaseMapper<RoleResource> {
 

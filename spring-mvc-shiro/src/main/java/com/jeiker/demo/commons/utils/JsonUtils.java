@@ -2,13 +2,12 @@ package com.jeiker.demo.commons.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wangzhixuan.commons.scan.JacksonObjectMapper;
+import com.jeiker.demo.commons.scan.JacksonObjectMapper;
 
 import java.io.IOException;
 
 /**
- * Created by L.cm
- * Date: 2015-25-12 17:57
+ * Json工具
  */
 public final class JsonUtils {
     private JsonUtils() {}

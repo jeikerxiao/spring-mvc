@@ -1,9 +1,9 @@
 package com.jeiker.demo.controller;
 
-import com.wangzhixuan.commons.base.BaseController;
-import com.wangzhixuan.commons.shiro.ShiroUser;
-import com.wangzhixuan.model.Resource;
-import com.wangzhixuan.service.IResourceService;
+import com.jeiker.demo.commons.base.BaseController;
+import com.jeiker.demo.commons.shiro.ShiroUser;
+import com.jeiker.demo.model.Resource;
+import com.jeiker.demo.service.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

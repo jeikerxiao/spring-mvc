@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @description：日志管理
- * @author：zhixuan.wang
- * @date：2015/10/30 18:06
  */
 @Controller
 @RequestMapping("/sysLog")

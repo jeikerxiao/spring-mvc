@@ -5,7 +5,6 @@ import java.util.UUID;
 
 /**
  * 继承自Spring util的工具类，减少jar依赖
- * @author L.cm
  */
 public class StringUtils extends org.springframework.util.StringUtils {
     /**

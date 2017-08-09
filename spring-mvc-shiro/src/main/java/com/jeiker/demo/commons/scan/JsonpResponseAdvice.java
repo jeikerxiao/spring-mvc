@@ -26,9 +26,6 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpRespon
 
 /**
  * 自动jsonp
- * created on 2016/1/13
- * @author dennisit.pu
- * @version 1.0
  */
 @ControllerAdvice
 public class JsonpResponseAdvice extends AbstractJsonpResponseBodyAdvice {

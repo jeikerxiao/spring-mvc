@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Miscellaneous utilities for web applications.
- * @author L.cm
  */
 public class WebUtils extends org.springframework.web.util.WebUtils {
 	/**

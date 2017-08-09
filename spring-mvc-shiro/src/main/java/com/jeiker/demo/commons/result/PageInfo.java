@@ -7,8 +7,6 @@ import java.util.Map;
 
 /**
  * @description：分页实体类 (结合jqery easyui)
- * @author：Wangzhixuan
- * @date：2015年4月23日 上午1:41:46
  */
 @SuppressWarnings("rawtypes")
 public class PageInfo {

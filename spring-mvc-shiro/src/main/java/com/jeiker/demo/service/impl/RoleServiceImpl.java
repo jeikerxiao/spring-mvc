@@ -18,9 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 /**
- *
  * Role 表数据服务层接口实现类
- *
  */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {

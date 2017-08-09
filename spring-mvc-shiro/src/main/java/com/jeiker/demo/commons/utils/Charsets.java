@@ -6,8 +6,6 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 字符集工具类
- * Author: L.cm
- * Date: 2016年3月29日 下午3:44:52
  */
 public class Charsets {
 

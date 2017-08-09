@@ -5,7 +5,6 @@ import java.io.IOException;
 
 /**
  * 流工具类，继承自Spring
- * @author L.cm
  */
 public class IOUtils extends org.springframework.util.StreamUtils {
 

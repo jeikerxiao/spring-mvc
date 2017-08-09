@@ -10,9 +10,7 @@ import com.jeiker.demo.service.ISysLogService;
 import org.springframework.stereotype.Service;
 
 /**
- *
  * SysLog 表数据服务层接口实现类
- *
  */
 @Service
 public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> implements ISysLogService {

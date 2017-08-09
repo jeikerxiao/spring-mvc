@@ -33,7 +33,6 @@ import java.util.Set;
 
 /**
  * 使用spring-cache作为shiro缓存
- * @author L.cm
  *
  */
 @SuppressWarnings("unchecked")

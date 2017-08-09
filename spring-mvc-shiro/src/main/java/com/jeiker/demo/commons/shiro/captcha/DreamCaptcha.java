@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 如梦验证码
- * @author L.cm
- *
  */
 public class DreamCaptcha implements InitializingBean {
 	private final static Logger logger = LogManager.getLogger(DreamCaptcha.class);

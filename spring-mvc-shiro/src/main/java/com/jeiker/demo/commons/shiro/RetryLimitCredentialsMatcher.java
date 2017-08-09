@@ -36,7 +36,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 输错5次密码锁定半小时，ehcache.xml配置
- * @author L.cm
  */
 public class RetryLimitCredentialsMatcher extends HashedCredentialsMatcher implements InitializingBean {
 	private final static Logger logger = LogManager.getLogger(RetryLimitCredentialsMatcher.class);

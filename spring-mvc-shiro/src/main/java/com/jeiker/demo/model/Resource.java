@@ -11,9 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * 资源
- *
  */
 public class Resource implements Serializable {
 

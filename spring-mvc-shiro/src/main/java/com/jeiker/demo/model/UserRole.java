@@ -9,9 +9,7 @@ import com.jeiker.demo.commons.utils.JsonUtils;
 import java.io.Serializable;
 
 /**
- *
  * 用户角色
- *
  */
 @TableName("user_role")
 public class UserRole implements Serializable {
