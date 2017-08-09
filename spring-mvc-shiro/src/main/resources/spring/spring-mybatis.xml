@@ -39,7 +39,7 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描Mapping.xml文件 -->
         <property name="mapperLocations" value="classpath*:mybatis/*.xml"></property>
-        <property name="configLocation" value="classpath:xml/mybatis-config.xml"></property>
+        <property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
         <property name="typeAliasesPackage" value="com.jeiker.demo.model"/>
         <property name="plugins">
             <array>

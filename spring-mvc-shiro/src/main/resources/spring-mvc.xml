@@ -20,15 +20,15 @@
     
     <!-- 配置结果页面 前缀和后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="order" value="10"></property>
-        <property name="prefix" value="/WEB-INF/views/"></property>
-        <property name="suffix" value=".jsp"></property>
+        <property name="order" value="10"/>
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
     
     <!-- 配置哪些是静态资源，缺省Servlet 直接返回 -->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="31556926"/>
-    <mvc:resources mapping="/upload/**" location="/upload/" cache-period="31556926"/>
-    <mvc:resources mapping="/favicon.ico" location="/static/style/images/favicon.ico" cache-period="31556926"/>
+    <!--<mvc:resources mapping="/upload/**" location="/upload/" cache-period="31556926"/>-->
+    <!--<mvc:resources mapping="/favicon.ico" location="/static/style/images/favicon.ico" cache-period="31556926"/>-->
     
     <!-- csrf CookieCsrfTokenRepository -->
     <bean class="com.jeiker.demo.commons.csrf.CookieCsrfTokenRepository" />
@@ -80,8 +80,10 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
+
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
     <!-- AOP式方法级权限检查  -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
           depends-on="lifecycleBeanPostProcessor">

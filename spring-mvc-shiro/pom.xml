@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-    <jdk.version>1.7</jdk.version>
+    <jdk.version>1.8</jdk.version>
     <junit.version>4.12</junit.version>
     <servlet.version>3.0.1</servlet.version>
     <log4j2.version>2.8.2</log4j2.version>
@@ -26,6 +26,9 @@
     <joda-time.version>2.9.7</joda-time.version>
     <commons-io.version>2.5</commons-io.version>
     <hibernate-validator.version>5.3.5.Final</hibernate-validator.version>
+    <spring-data-redis.version>1.8.1.RELEASE</spring-data-redis.version>
+    <commons-pool2.version>2.4.2</commons-pool2.version>
+    <jedis.version>2.9.0</jedis.version>
   </properties>
 
   <dependencies>
@@ -72,17 +75,22 @@
     <!-- log4j2 begin -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
       <version>${log4j2.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-jcl</artifactId>
-      <version>${log4j2.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
+      <artifactId>log4j-web</artifactId>
       <version>${log4j2.version}</version>
     </dependency>
     <!-- log4j2 end -->
@@ -114,6 +122,7 @@
       <artifactId>commons-io</artifactId>
       <version>${commons-io.version}</version>
     </dependency>
+
     <!-- Mybatis-Plus -->
     <dependency>
       <groupId>com.baomidou</groupId>
@@ -137,6 +146,7 @@
       <version>${jackson.version}</version>
     </dependency>
     <!-- jackson end -->
+
     <!-- shiro begin -->
     <dependency>
       <groupId>org.apache.shiro</groupId>
@@ -150,6 +160,7 @@
       </exclusions>
     </dependency>
     <!-- shiro end -->
+
     <!-- 可选配置，spring时间处理增强 -->
     <dependency>
       <groupId>joda-time</groupId>
@@ -165,28 +176,29 @@
     </dependency>
 
     <!-- ehcache和redis必选其一，也可同时使用（需要注意） -->
-    <dependency>
-      <groupId>net.sf.ehcache</groupId>
-      <artifactId>ehcache-core</artifactId>
-      <version>${ehcache.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>net.sf.ehcache</groupId>-->
+      <!--<artifactId>ehcache-core</artifactId>-->
+      <!--<version>${ehcache.version}</version>-->
+    <!--</dependency>-->
 
-    <!-- redis -->
+    <!-- redis start -->
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-redis</artifactId>
-      <version>1.8.1.RELEASE</version>
+      <version>${spring-data-redis.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-pool2</artifactId>
-      <version>2.4.2</version>
+      <version>${commons-pool2.version}</version>
     </dependency>
     <dependency>
       <groupId>redis.clients</groupId>
       <artifactId>jedis</artifactId>
-      <version>2.9.0</version>
+      <version>${jedis.version}</version>
     </dependency>
+    <!-- redis end -->
 
   </dependencies>
   <build>
@@ -195,15 +207,13 @@
       <resource>
         <directory>src/main/resources</directory>
       </resource>
-      <resource>
-        <directory>src/main/conf/${profiles.active}</directory>
-      </resource>
     </resources>
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.6.1</version>
         <configuration>
           <source>${jdk.version}</source>
           <target>${jdk.version}</target>
@@ -216,9 +226,7 @@
         <artifactId>jetty-maven-plugin</artifactId>
         <version>9.3.10.v20160621</version>
         <configuration>
-          <stopPort>9966</stopPort>
-          <stopKey>stop</stopKey>
-          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <reload>automatic</reload>
           <webApp>
             <contextPath>/</contextPath>
           </webApp>
