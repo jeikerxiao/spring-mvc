@@ -8,6 +8,6 @@ package com.jeiker.controller;
 public class SimpleController implements Controller {
 
     public void doSimplerHandler() {
-        System.out.println("simple...");
+        System.out.println("SimpleController:simpleMethod()");
     }
 }

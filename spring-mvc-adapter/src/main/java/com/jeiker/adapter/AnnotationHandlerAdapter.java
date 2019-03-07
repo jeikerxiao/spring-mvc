@@ -3,7 +3,7 @@ package com.jeiker.adapter;
 import com.jeiker.controller.AnnotationController;
 
 /**
- * Description: spring-mvc-adapter
+ * Description: AnnotationController 的适配器
  * User: jeikerxiao
  * Date: 2019/3/7 1:51 PM
  */

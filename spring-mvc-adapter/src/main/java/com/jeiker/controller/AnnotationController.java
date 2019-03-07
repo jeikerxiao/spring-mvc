@@ -8,7 +8,7 @@ package com.jeiker.controller;
 public class AnnotationController implements Controller {
 
     public void doAnnotationHandler() {
-        System.out.println("annotation...");
+        System.out.println("AnnotationController:annotationMethod()");
     }
 
 }

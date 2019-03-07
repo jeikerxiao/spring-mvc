@@ -41,7 +41,7 @@ public class DispatchServlet {
         Controller controller2 = new AnnotationController();
         Controller controller3 = new SimpleController();
 
-        Controller handler = controller1;
+        Controller handler = controller2;
         // 得到对应适配器
         HandlerAdapter handlerAdapter = getHandler(handler);
         // 通过适配器执行对应的controller对应方法

@@ -8,7 +8,7 @@ package com.jeiker.controller;
 public class HttpController implements Controller {
 
     public void doHttpHandler() {
-        System.out.println("http...");
+        System.out.println("HttpController:httpMethod()");
     }
 
 }
