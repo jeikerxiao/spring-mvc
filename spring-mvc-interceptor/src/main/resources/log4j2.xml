@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    status：这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出。
+    monitorInterval : Log4j2能够自动检测修改配置文件和重新配置本身，设置间隔秒数，单位是s,最小是5s.
+-->
+<Configuration status="ERROR" monitorInterval="30">
+    <Properties>
+        <!-- 配置日志文件输出目录 -->
+        <Property name="LOG_HOME">./logs</Property>
+        <property name="ERROR_LOG_FILE_NAME">./logs</property>
+    </Properties>
+    <Appenders>
+        <!-- Console节点 配置控制台日志输出：
+            name:指定Appender的名字.
+            target: SYSTEM_OUT 或 SYSTEM_ERR,一般只设置默认:SYSTEM_OUT.
+            PatternLayout: 输出格式，不设置默认为:%m%n.
+        -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- ThresholdFilter 过滤器：
+                控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch)
+                日志的级别： ALL< Trace < DEBUG < INFO < WARN < ERROR < FATAL < OFF。
+            -->
+            <ThresholdFilter level="TRACE" onMatch="ACCEPT"
+                             onMismatch="DENY"/>
+            <!-- PatternLayout 日志输出格式模板：
+                %d{yyyy-MM-dd HH:mm:ss.SSS} 日志生成时间。
+                %-5level 日志级别(级别从左显示5个字符宽度)。
+                %logger{36} 表示logger名字最长36个字符,否则按照句点分割。
+                %L 日志输出所在行数 日志输出所在行数
+                [%t] 输出产生该日志事件的线程名
+                %msg 日志消息
+                %n 是换行符
+                eg:"2017-04-17 16:04:02.312 INFO  com.zte.lucene.tools.DateUtils2Joda:424 [main] - Info Message!"
+            -->
+            <PatternLayout
+                    pattern="%highlight{%d{MM-dd HH:mm:ss.SSS} [%5p] [%logger{36}:%3L] - %m%n}{FATAL=white, ERROR=red, WARN=blue, INFO=Green, DEBUG=Yellow, TRACE=blue}"/>
+        </Console>
+        <!-- RollingFileAppender 定义输出滚动文件格式。（FileAppender 定义输出到文件）
+            name ： RollingFileAppender的名字，用于与Loggers模块的绑定
+            fileName ： 日志输出保存的文件路径
+            filePattern：满足条件后，日志输出保存的文件路径和名称。
+            (eg: 2017-04/search-2017-04-17-1.log)
+        -->
+        <RollingFile name="RollingFileInfo" fileName="${LOG_HOME}/search.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/search-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT"
+                             onMismatch="DENY"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}:%L [%t] - %msg%n"/>
+            <!-- Policies定义相关策略：-->
+            <Policies>
+                <!--TimeBasedTriggeringPolicy 基于时间的滚动策略:该策略主要是完成周期性的log文件封存工作。
+                    interval: integer型，指定两次封存动作之间的时间间隔，默认是1 hour。
+                        单位:以日志的命名精度来确定单位，比如yyyy-MM-dd-HH 单位为小时，yyyy-MM-dd-HH-mm 单位为分钟。
+                        关键点在于 filePattern后的日期格式.
+                    modulate: boolean型，说明是否对封存时间进行调制。
+                        若modulate=true，则封存时间将以0点为边界进行偏移计算。
+                        比如:modulate=true，interval=4hours，那么假设上次封存日志的时间为01:00，
+                        则下次封存日志的时间为04:00，之后的封存时间依次为08:00，12:00.
+                -->
+                <!-- log4j2的按天分日志文件 : search-%d{yyyy-MM-dd}.log -->
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true"/>
+                <!--SizeBasedTriggeringPolicy 基于对log文件大小的判断策略:
+                    当log文件大于设定的阈值时，将触发封存动作。
+                    可设定的log文件大小的单位有bytes、KB、MB或GB。
+                -->
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <!--DefaultRolloverStrategy(属性如不设置，则默认为最多同一文件夹下7个文件):
+                fileIndex: String类型，有两个选择“max”或“min”。
+                    设置为“max”意味着将最新的日志信息封存在序号较大的封存文件中。“min”则相反。
+                max: integer类型，封存文件的序号的最大值。（超过最大值时，将有文件被删除）
+                min: integer类型，封存文件的序号的起始值。
+            相当于min和max两个参数设置了一个保存窗口，超出这个窗口的日志文件将会被删除。
+            -->
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+        <RollingFile name="RollingFileError"
+                     fileName="${ERROR_LOG_FILE_NAME}/search-error.log"
+                     filePattern="${ERROR_LOG_FILE_NAME}/$${date:yyyy-MM}/search-error-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT"
+                             onMismatch="DENY"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}:%L [%t] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+    </Appenders>
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+    <Loggers>
+        <!--过滤掉spring的一些无用的DEBUG信息-->
+        <logger name="org.springframework" level="debug"></logger>
+        <!-- 配置日志的根节点 -->
+        <!-- level="all" 只能够输出level级别是all及all以上的-->
+        <root level="all">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileError"/>
+        </root>
+    </Loggers>
+</Configuration>
