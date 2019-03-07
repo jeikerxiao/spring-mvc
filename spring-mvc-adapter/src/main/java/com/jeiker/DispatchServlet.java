@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Description: 模拟一个DispatcherServlet，适配器（适配者模式）
+ *              HandlerAdapter(适配器类) 作为适配器来适配各种 Handler(适配者类)（如Controller）
  * User: jeikerxiao
  * Date: 2019/3/7 1:44 PM
  */
@@ -42,9 +43,9 @@ public class DispatchServlet {
         Controller controller3 = new SimpleController();
 
         Controller handler = controller2;
-        // 得到对应适配器
+        // 通过handler来找到对应适配器
         HandlerAdapter handlerAdapter = getHandler(handler);
-        // 通过适配器执行对应的controller对应方法
+        // 通过执行适配器的handle，来执行对应的controller对应方法
         handlerAdapter.handle(handler);
     }
 
