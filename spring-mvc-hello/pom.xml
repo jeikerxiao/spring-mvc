@@ -34,6 +34,7 @@
 
     <build>
         <plugins>
+            <!-- 引用maven jetty插件,方便开发启动工程 -->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
