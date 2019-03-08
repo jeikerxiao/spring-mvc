@@ -17,14 +17,14 @@ public class ServletDemo1 implements Servlet {
         logger.info("ServletDemo1 - init()");
     }
 
-    public ServletConfig getServletConfig() {
-        logger.info("ServletDemo1 - getServletConfig()");
-        return null;
-    }
-
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         logger.info("ServletDemo1 - service()");
         servletResponse.getWriter().write("ServletDemo1 - Hello World");
+    }
+
+    public ServletConfig getServletConfig() {
+        logger.info("ServletDemo1 - getServletConfig()");
+        return null;
     }
 
     public String getServletInfo() {
