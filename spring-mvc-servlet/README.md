@@ -1,10 +1,16 @@
 # spring-mvc-servlet
 
+实现Servlet的三种方式
+
+1. 编写一个类去实现 `Servlet` 接口(必须重写`Servlet`接口里面所有的抽象方法)
+2. 编写一个类去继承 `GenericServlet` 抽象类(重写生命周期的`service`方法（抽象方法）)`GenericServle`抽象类它实现了`Servlet`接口，还实现了ServletConfig接口(这个接口中提供了一个`getServletContext`方法)可以在编写一个类中直接调用`getServletContext`方法就可以获得`ServletContext`对象。（开发中不常用）
+3. 编写一个类去继承 `HttpServlet` 抽象类(没有抽象方法！根据页面的提交方式决定重写doGet或者doPost方法)
+
 通过三个Demo演示了Servlet的进化。
 
-1. Demo1直接使用Servlet接口
-2. Demo2继承GenericServlet类
-3. Demo3继承HttpServlet类
+1. Demo1直接使用`Servlet`接口
+2. Demo2继承`GenericServlet`类
+3. Demo3继承`HttpServlet`类
 
 ## 1.Servlet
 
