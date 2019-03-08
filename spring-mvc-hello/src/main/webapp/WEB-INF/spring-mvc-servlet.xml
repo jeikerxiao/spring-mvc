@@ -10,9 +10,9 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 启动注解驱动的spring MVC功能,注册请求url和注解POJO类方法的映射-->
+    <!-- 启动注解驱动的spring MVC功能,注册请求url和注解POJO类方法的映射 -->
     <mvc:annotation-driven/>
-
+    <!-- 设置包扫描路径 -->
     <context:component-scan base-package="com.jeiker"/>
 
 </beans>
